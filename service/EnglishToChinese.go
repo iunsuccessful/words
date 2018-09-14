@@ -3,7 +3,7 @@ package service;
 import (
     "container/list"
     "fmt"
-    "github.com/iunsuccessful/tools/words/module"
+    "github.com/iunsuccessful/words/module"
 )
 
 func englishToChinese(words *list.List) {

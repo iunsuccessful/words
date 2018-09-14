@@ -2,8 +2,8 @@ package main;
 
 import (
     "os"
-    "github.com/iunsuccessful/tools/words/service"
-    "github.com/iunsuccessful/tools/words/module"
+    "github.com/iunsuccessful/words/service"
+    "github.com/iunsuccessful/words/module"
 )
 
 func main() {

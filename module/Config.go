@@ -9,23 +9,21 @@ import (
 
 type Config struct {
     Number   int // 本次显示多少个单词
-    Itration int // 隐藏多少位
+    Itration int // 隐藏多少位 -1 为不提示
     Mode     int // 0. chinese to english(default) 1. english to chinese
 
 }
 
 func ParseConfig(args []string) *Config {
-    config := &Config{Number: 10, Itration: 2, Mode: 0};
-    if len(args) <= 1 {
-        return config;
-    }
-    for i := 0; i < len(args); i++ {
-        switch args[i] {
-            case "-h": fallthrough;
-            case "/h": usage();
-            case "-n": config.Number = getToInt(args, i+1);
-            case "-i": config.Itration = getToInt(args, i+1);
-            case "-m": config.Mode = getToInt(args, i+1);
+    config := &Config{Number: 10, Itration: -1, Mode: 0};
+    for i := 1; i < len(args); i++ {
+        if (args[i][0] == '-') || (args[i][0] == '/') {
+            switch args[i][1] {
+            case 'h': usage();
+            case 'n': config.Number = getToInt(args, i+1);
+            case 'i': config.Itration = getToInt(args, i+1);
+            case 'm': config.Mode = getToInt(args, i+1);
+            }
         }
     }
     return config;

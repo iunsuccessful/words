@@ -11,7 +11,7 @@ import (
 )
 
 import (
-    "github.com/iunsuccessful/tools/words/module"
+    "github.com/iunsuccessful/words/module"
     // "github.com/iunsuccessful/common/array"
 )
 //

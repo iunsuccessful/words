@@ -3,7 +3,7 @@ package dao;
 import (
     "log"
     "container/list"
-    "github.com/iunsuccessful/tools/words/module"
+    "github.com/iunsuccessful/words/module"
 )
 
 func SelectCount() int {

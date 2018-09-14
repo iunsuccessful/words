@@ -1,8 +1,8 @@
 package service;
 
 import (
-    "github.com/iunsuccessful/tools/words/fao/dictionary"
-    "github.com/iunsuccessful/tools/words/module"
+    "github.com/iunsuccessful/words/fao/dictionary"
+    "github.com/iunsuccessful/words/module"
 )
 
 func Run(config *module.Config) error {
