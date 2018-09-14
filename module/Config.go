@@ -11,21 +11,31 @@ type Config struct {
     Number   int // 本次显示多少个单词
     Itration int // 隐藏多少位 -1 为不提示
     Mode     int // 0. chinese to english(default) 1. english to chinese
+    BookName string // 单词书
 
 }
 
 func ParseConfig(args []string) *Config {
-    config := &Config{Number: 10, Itration: -1, Mode: 0};
+    config := &Config{ Number: 10, Itration: -1, Mode: 0 };
     for i := 1; i < len(args); i++ {
         if (args[i][0] == '-') || (args[i][0] == '/') {
             switch args[i][1] {
-            case 'h': usage();
-            case 'n': config.Number = getToInt(args, i+1);
-            case 'i': config.Itration = getToInt(args, i+1);
-            case 'm': config.Mode = getToInt(args, i+1);
+				case 'h': usage();
+				case 'n': config.Number = getToInt(args, i+1);
+				case 'i': config.Itration = getToInt(args, i+1);
+				case 'm': config.Mode = getToInt(args, i+1);
             }
-        }
+            i++
+        } else if len(config.BookName) == 0 {
+			config.BookName = args[i]
+		}
     }
+
+	if len(config.BookName) == 0 {
+		// print help
+		usage()
+	}
+
     return config;
 }
 
@@ -42,7 +52,7 @@ func getToInt(args []string, index int) int {
 
 func usage() {
     fmt.Printf("Use Words\n\n");
-    fmt.Printf("Usage:\n\t words [-n number] [-i hint] [-m mode]\n\n");
+    fmt.Printf("Usage:\n\t words [-n number] [-i hint] [-m mode] <单词本>\n\n");
     fmt.Printf("Options:\n");
     fmt.Printf("\t-n\tChoose Number to this test.\n");
     fmt.Printf("\t-i\tHint Chat in mode 0.\n");

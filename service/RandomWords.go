@@ -6,7 +6,7 @@ import (
 )
 
 func Run(config *module.Config) error {
-    words := dictionary.SelectRandom(config.Number);
+    words := dictionary.SelectRandom(config.BookName, config.Number);
     if config.Mode == 0 {
         chineseToEnglish(words, config.Itration);
     } else {

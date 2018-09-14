@@ -5,13 +5,14 @@ import (
     "path/filepath"
 )
 
-func XmlPath() (string, error) {
+func XmlPath(bookName string) (string, error) {
+    // 可执行文件所在目录目录
     path, err :=  exec.LookPath("words");
     if err != nil {
         return "", err;
     }
     dir := filepath.Dir(path);
-    return filepath.Join(dir , "words.xml"), nil;
+    return filepath.Join(dir ,"dict", bookName + ".xml"), nil;
 }
 
 

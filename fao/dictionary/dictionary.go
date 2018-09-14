@@ -22,9 +22,9 @@ import (
 
 var wordbook Wordbook;
 
-func init() {
+func loadWordbook(bookName string) {
     // absPath, _ := filepath.Abs("./words.xml");
-    absPath, err := XmlPath();
+    absPath, err := XmlPath(bookName);
     if err != nil {
         log.Fatal(err);
     }
@@ -38,10 +38,11 @@ func init() {
     }
 }
 
-func SelectRandom(limit int) *list.List {
+func SelectRandom(bookName string, limit int) *list.List {
+    loadWordbook(bookName)
     limit = min(limit, len(wordbook.Items));
     result := list.New();
-    Shuffle(wordbook.Items);
+    shuffle(wordbook.Items);
     for i := 0; i < limit; i++ {
         item := wordbook.Items[i];
         dict := &module.Dictionary{ Spell: item.Word, Interpretation: item.Trans };
@@ -50,7 +51,7 @@ func SelectRandom(limit int) *list.List {
     return result;
 }
 
-func Shuffle(a []Item) {
+func shuffle(a []Item) {
     rand.Seed(time.Now().UnixNano());
     for i := range a {
         j := rand.Intn(i + 1)
